@@ -9,12 +9,19 @@ for page_num in range(len(pdfReader.pages)):
     page_object = pdfReader.pages[page_num]
     page_text = page_object.extract_text()
     
-    print('ttt')
+    # print('ttt')
     
     lines = page_text.lower()
-    while '\n' in lines:
-        if lines[lines.index('\n')-1] == '-':
-            lines = lines.replace('\n', '', 1)
+    # while '\n' in lines:
+    #     if lines[lines.index('\n')-1] == '-':
+    #         lines = lines.replace('\n', '', 1)
+    
+    # ^ this while loop is causing the program to hang 
+
+    '''  to be solved: 
+    hyphenated words that are split across 2 lines are currently 
+        treated as 2 separate words
+    ''' 
     lines = lines.replace('\n', ' ')
     words = ''.join(lines).split()
 
@@ -38,5 +45,8 @@ for page_num in range(len(pdfReader.pages)):
             frequency_table[word] = 1
         else:
             frequency_table[word] +=1
-    print(frequency_table)
-  
+    
+# print(frequency_table)
+
+# m = max(frequency_table.values())
+# print(m)
